@@ -36,7 +36,7 @@ def search_friend():
             print("User's ID: {}".format(user.uid))
             print("User's name: {}".format(user.name))
             print("User's profile picture url: {}".format(user.photo))
-            print("User's main url: {}".format(user.url))
+            print("User's URL: {}".format(user.url))
             return user.uid
     except Exception as e:
         print(e)
@@ -51,7 +51,7 @@ def show_message(id_user,limit_mess):
         #
         # # Prints the content of all the messages
         for message in messages:
-            print("Message:",message.text)
+            print("Message:", message.text)
     except:
         print("No message found")
 
@@ -79,10 +79,12 @@ def thread_list():
     threads = client.fetchThreadList()
     # Fetches the next 10 threads
     threads += client.fetchThreadList(before=5, limit=5)
-
+    print("-----------10 LASTEST MESSAGE-------------")
     for thread in range(10):
+
         print("Friend:",threads[thread].name)
         show_message(threads[thread].uid,1)
+        print("------------------------------------------")
 
 def menu():
     start = "ok"
@@ -97,7 +99,7 @@ def menu():
 
 print("Facebook chat via CMD by Rice - a.k.a Hoang")
 username = input("Username: ")
-password = getpass.getpass('Password:')
+password = getpass.getpass('Password: ')
 
 client = EchoBot(username, password)
 menu()
